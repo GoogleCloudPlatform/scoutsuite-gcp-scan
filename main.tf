@@ -1,5 +1,4 @@
-# Copyright 2022 Ian Craythorne
-
+# Copyright 2022 Google
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -105,6 +104,6 @@ module "gcloud_build_image" {
   create_cmd_body        = "builds submit build/ --config=build/cloudbuild.yaml --substitutions=_SCOUTSUITE_BUCKET='${google_storage_bucket.bucket.name}',_SCOPE='${var.scan_scope}',_SERVICE_ACCOUNT='${google_service_account.scoutsuite_service_account.email}',_PROJECT_ID='${var.project_id}' --project ${var.project_id} --region=${var.region} --timeout=12000s"
 
   module_depends_on = [
-    time_sleep.wait_cloudbuild_sa_iam
+    time_sleep.wait_cloudbuild_sa_iam,
   ]
 }

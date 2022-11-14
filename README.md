@@ -94,5 +94,5 @@ terraform destroy
 
 This is not an official Google or Google Cloud product.
 
-Copyright 2022 Ian Craythorne
+Copyright 2022 Google
 SPDX-License-Identifier: Apache-2.0
