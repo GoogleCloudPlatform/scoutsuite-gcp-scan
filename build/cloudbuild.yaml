@@ -1,0 +1,31 @@
+# Copyright 2022 Ian Craythorne
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#     http://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+steps:
+  - name: 'gcr.io/google.com/cloudsdktool/google-cloud-cli:slim'
+    id: Install Scout Suite and Generate a report
+    entrypoint: 'bash'
+    args: ['-c', 'export SCOPE=''${_SCOPE}'' && ./bin/container-install-run-scoutsuite.sh']
+    volumes:
+      - name: reports
+        path: /reports
+  - name: 'gcr.io/cloud-builders/gsutil'
+    id: Copy reports to GCS
+    args: ['cp', '-r', '/reports', 'gs://${_SCOUTSUITE_BUCKET}/']
+    volumes:
+      - name: reports
+        path: /reports
+serviceAccount: 'projects/${_PROJECT_ID}/serviceAccounts/${_SERVICE_ACCOUNT}'        
+options:
+  logging: CLOUD_LOGGING_ONLY
