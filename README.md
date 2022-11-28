@@ -67,7 +67,7 @@ export WORKING_DIR=$(pwd)
 | Name | Description | Default  |
 |:----------|:----------|:----------|
 | host_project_id   | The Project ID used to to create resources in (SA, GCS Bucket, Cloud Buid) and run Scoutsuitefrom    | n/a    |
-| scan_scope    | The scope of where Scoutsuite should scan. Valid inputs are: ' organization-id <ORGANIZATION ID>'; 'folder-id <FOLDER ID>'; 'project-id <PROJECT ID>'; 'all-projects' (that the service account has access to)    | n/a    |
+| scan_scope    | The scope of where Scoutsuite should scan. Valid inputs are: 'organization-id [ORGANIZATION ID]'; 'folder-id [FOLDER ID]'; 'project-id [PROJECT ID]'  | n/a    |
 | region    | Preferred Region to resources    | n/a   |
 | scoutsuite_sa    | NAme of Service Account to Run Cloud Build Job and Scoutsuite scan    | scoutsuite    |
 
