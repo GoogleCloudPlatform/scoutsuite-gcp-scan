@@ -16,7 +16,7 @@ The following resources will be created:
 
 - GCS bucket to store html report
 - Service Account for Cloud Build job to run with, and the Scoutsuite scan to run under
-- IAM Role Bindings that are attached to the SA: **Viewer**, **Security Reviewer**, **Stackdriver Accounts Viewer**, **Log Writer**, **Storage Object Admin** (restricted to the GCS bucket previously created and the bucket created for Cloudbuild)
+- IAM Role Bindings that are attached to the SA: **Viewer**, **Security Reviewer**, **Stackdriver Accounts Viewer**, **Log Writer**, **Storage Object Admin** (restricted to the GCS bucket previously created and the bucket created for Cloud Build)
 - Cloud Build Image
 
 
@@ -66,10 +66,10 @@ export WORKING_DIR=$(pwd)
 
 | Name | Description | Default  |
 |:----------|:----------|:----------|
-| host_project_id   | The Project ID used to to create resources in (SA, GCS Bucket, Cloud Buid) and run Scoutsuitefrom    | n/a    |
+| host_project_id   | The Project ID used to to create resources in (SA, GCS Bucket, Cloud Build) and run Scoutsuite from    | n/a    |
 | scan_scope    | The scope of where Scoutsuite should scan. Valid inputs are: 'organization-id [ORGANIZATION ID]'; 'folder-id [FOLDER ID]'; 'project-id [PROJECT ID]'  | n/a    |
-| region    | Preferred Region to resources    | n/a   |
-| scoutsuite_sa    | NAme of Service Account to Run Cloud Build Job and Scoutsuite scan    | scoutsuite    |
+| region    | Preferred Region to create resources    | n/a   |
+| scoutsuite_sa    | Name of Service Account to Run Cloud Build Job and Scoutsuite scan    | scoutsuite    |
 
 
 
