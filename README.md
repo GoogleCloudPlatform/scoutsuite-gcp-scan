@@ -63,14 +63,12 @@ export WORKING_DIR=$(pwd)
 
 ## Variable Inputs
 
-
 | Name | Description | Default  |
 |:----------|:----------|:----------|
 | host_project_id   | The Project ID used to to create resources in (SA, GCS Bucket, Cloud Build) and run Scoutsuite from    | n/a    |
 | scan_scope    | The scope of where Scoutsuite should scan. Valid inputs are: 'organization-id [ORGANIZATION ID]'; 'folder-id [FOLDER ID]'; 'project-id [PROJECT ID]'  | n/a    |
 | region    | Preferred Region to create resources    | n/a   |
 | scoutsuite_sa    | Name of Service Account to Run Cloud Build Job and Scoutsuite scan    | scoutsuite    |
-
 
 
 ## Terraform init, plan and apply
