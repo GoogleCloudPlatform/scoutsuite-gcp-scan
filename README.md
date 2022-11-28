@@ -26,7 +26,7 @@ The Cloud Build job will contain the following attributes:
 
 - Uses google-cloud-cli:slim and gsutil base container images from Google's public container registry
 - Scoutsuite is installed on google-cloud-cli:slim
-- Scoutsuite is run on Current Project, Organization, Folder, or all Projects that the service account has access to. 
+- Scoutsuite is run on Current Project, Organization, Folder, or all Projects that the service account has access to
 - gsutil is used to copy the report files to the bucket created previously
 
  
@@ -55,7 +55,7 @@ It is recommended that this is run from within Google Cloud using Cloud Shell, o
 Clone this repository
 
 ```sh
-git clone https://github.com/icraytho/scoutsuite-gcp-tf.git
+git clone https://github.com/GoogleCloudPlatform/scoutsuite-gcp-scan.git
 cd scoutsuite-gcp-tf
 export WORKING_DIR=$(pwd)
 ```
