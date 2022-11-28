@@ -1,6 +1,6 @@
 # Scoutsuite Security Scan for Google Cloud
 
-This will run a Scoutsuite scan in your Google Cloud Organization and copy the report to a GCS Bucket.
+This will run a Scoutsuite security scan in your Google Cloud Organization, Folder or Project and copy the report to a GCS Bucket.
 
 ## Providers
 
@@ -14,9 +14,9 @@ This will run a Scoutsuite scan in your Google Cloud Organization and copy the r
 
 The following resources will be created:
 
-- GCS Bucket to store report
-- Service Account for Cloud Build job to run with and Scoutsuite scan to run under
-- Organization IAM Role Bindings that are attached to the SA: **Viewer**, **Security Reviewer**, **Stackdriver Accounts Viewer**, **Log Writer**, **Storage Object Creator** (restricted to the GCS bucket previously created)
+- GCS bucket to store html report
+- Service Account for Cloud Build job to run with, and the Scoutsuite scan to run under
+- IAM Role Bindings that are attached to the SA: **Viewer**, **Security Reviewer**, **Stackdriver Accounts Viewer**, **Log Writer**, **Storage Object Admin** (restricted to the GCS bucket previously created and the bucket created for Cloudbuild)
 - Cloud Build Image
 
 
@@ -34,17 +34,23 @@ The Cloud Build job will contain the following attributes:
 
 The following Roles are required for the user/SA to apply and destroy this Terraform script:
 
+Within the host project from where the scan will be run:
+
 - Storage Admin
 - Create Service Accounts
-- Security Admin
 - Service Account User
 - Service Usage Admin
 - Cloud Build Editor
 
+The following roles are required depending on the scan scope:
+- Project IAM Admin Administrator (Project Level Scan)
+- Folder Administrator (Folder Level Scan)
+- Organization Administrator (Org Level Scan)
+
 
 ## GCP Environment setup
 
-It is recommended that this is run from within Google Cloud using Cloud Shell or however your currently execute Terraform scripts so as not to need to download SA keys.
+It is recommended that this is run from within Google Cloud using Cloud Shell, or however your currently execute Terraform scripts so as not to need to download SA keys.
 
 Clone this repository
 
@@ -60,11 +66,11 @@ export WORKING_DIR=$(pwd)
 
 | Name | Description | Default  |
 |:----------|:----------|:----------|
-| gcp_domain   | The domain name of your Org    | n/a    |
-| project_id    | The Project to create Resources    | n/a    |
-| region    | Preferred Region to create bucket    | asia-southeast1    |
+| host_project_id   | The Project ID used to to create resources in (SA, GCS Bucket, Cloud Buid) and run Scoutsuitefrom    | n/a    |
+| scan_scope    | The scope of where Scoutsuite should scan. Valid inputs are: ' organization-id <ORGANIZATION ID>'; 'folder-id <FOLDER ID>'; 'project-id <PROJECT ID>'; 'all-projects' (that the service account has access to)    | n/a    |
+| region    | Preferred Region to resources    | n/a   |
 | scoutsuite_sa    | NAme of Service Account to Run Cloud Build Job and Scoutsuite scan    | scoutsuite    |
-| scan_scope    | The scope of where Scoutsuite will run: Org/Folder/Project/All Projects service account has access to    | --all-projects    |
+
 
 
 ## Terraform init, plan and apply
@@ -80,7 +86,7 @@ terraform apply
 
 ## Get the Scout Suite Report
 
-The result report is put in to the GCS Bucket that was created. To view the report it is recommended that you download all the files from the bucket to your local machine and open the html file on your local browser.
+The result report is put in to the GCS bucket that was created. To view the report it is recommended that you download all the files from the bucket to your local machine and open the html file on your local browser.
 
 ## Clean up
 
