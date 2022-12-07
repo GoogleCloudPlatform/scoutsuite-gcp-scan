@@ -70,6 +70,29 @@ export WORKING_DIR=$(pwd)
 | region    | Preferred Region to create resources    | n/a   |
 | scoutsuite_sa    | Name of Service Account to Run Cloud Build Job and Scoutsuite scan    | scoutsuite    |
 
+## Variable preparation - example 1: scan at organization scope
+
+Get the Organization ID from your base Project ID and set scan_scope variable to scan the whole organization-id.
+
+```bash
+export PROJECT_ID="<YOUR_PROJECT_ID>"
+export ORG_ID="$(gcloud projects get-ancestors $PROJECT_ID | grep organization | cut -f1 -d' ')"
+
+export TF_VAR_host_project_id=$PROJECT_ID
+export TF_VAR_scan_scope="organization-id $ORG_ID"
+```
+
+## Variable preparation - example 2: scan at folder scope
+
+Get the Folder ID from your base Project ID and set scan_scope variable to scan the whole folder-id.
+
+```bash
+PROJECT_ID="<YOUR_PROJECT_ID>"
+FOLDER_ID="$(gcloud projects get-ancestors $PROJECT_ID | grep folder | cut -f1 -d' ')"
+
+TF_VAR_host_project_id=$PROJECT_ID
+TF_VAR_scan_scope="folder-id $FOLDER_ID"
+```
 
 ## Terraform init, plan and apply
 
