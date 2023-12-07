@@ -42,7 +42,7 @@ Within the host project from where the scan will be run:
 - Service Usage Admin
 - Cloud Build Editor
 
-The following roles are required depending on the scan scope:
+The following additional roles are required depending on the desired scan scope:
 - Project IAM Admin Administrator (Project Level Scan)
 - Folder Administrator (Folder Level Scan)
 - Organization Administrator (Org Level Scan)
