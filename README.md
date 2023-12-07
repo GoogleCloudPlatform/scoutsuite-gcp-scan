@@ -56,7 +56,7 @@ Clone this repository
 
 ```sh
 git clone https://github.com/GoogleCloudPlatform/scoutsuite-gcp-scan.git
-cd scoutsuite-gcp-tf
+cd scoutsuite-gcp-scan
 export WORKING_DIR=$(pwd)
 ```
 
@@ -84,7 +84,7 @@ terraform apply
 
 ## Get the Scout Suite Report
 
-The result report is put in to the GCS bucket that was created. To view the report it is recommended that you download all the files from the bucket to your local machine and open the html file on your local browser.
+The results report is put in to the GCS bucket that was created. To view the report it is recommended that you download all the files from the bucket to your local machine and open the html file on your local browser.
 
 ## Clean up
 
