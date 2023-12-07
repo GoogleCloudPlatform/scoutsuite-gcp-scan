@@ -142,3 +142,7 @@ module "gcloud_build_image" {
     time_sleep.wait_cloudbuild_sa_iam_folder
   ]
 }
+
+output "gsutil_command" {
+  value = " Run this to download the report to your current directory and open the html file with your browser: 'gs://${google_storage_bucket.bucket.name}/reports .'"
+}
