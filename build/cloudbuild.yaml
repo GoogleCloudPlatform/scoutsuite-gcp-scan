@@ -20,9 +20,9 @@ steps:
     volumes:
       - name: reports
         path: /reports
-  - name: 'gcr.io/cloud-builders/gsutil'
+  - name: 'gcr.io/cloud-builders/gcloud'
     id: Copy reports to GCS
-    args: ['cp', '-r', '/reports', 'gs://${_SCOUTSUITE_BUCKET}/']
+    args: ['storage', 'cp', '--recursive', '/reports', 'gs://${_SCOUTSUITE_BUCKET}/']
     volumes:
       - name: reports
         path: /reports
